@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     00.00.2021                                                        
+
+     NAME
+                   
+     Carlos F. Heuberger                                                                
+     ====================================================================== -->
+<project name="name" default="dist" basedir=".">
+    <description>
+        DESCRIPTION
+    </description>
+    
+    <property file="build.properties" />
+    
+
+    <target name="-init">
+        <tstamp />
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${dist.dir}" />
+    </target>
+
+
+    <target name="clean" description="Remove generated files and directories.">
+        <delete dir="${build.dir}" />
+        <delete dir="${dist.dir}" />
+    </target>
+
+    
+    <target name="dist" depends="jar,srcjar" description="Makes distributions.">
+    </target>
+    
+    
+    <target name="jar" depends="compile" description="Create JAR.">
+        <jar 
+            destfile="${jar.file}" 
+            basedir="${build.dir}"
+            manifest="${manifest.file}">
+        </jar>
+    </target>
+    
+    
+    <target name="srcjar" depends="compile" description="Create JAR.">
+        <jar destfile="${srcjar.file}" filesonly="true">
+            <manifest>
+                <attribute name="Implementation-Vendor"
+                           value="Carlos Heuberger" />
+            </manifest>
+            <fileset dir="${basedir}" includes="${src.dir}/**" />
+        </jar>
+    </target>
+    
+    
+    <target name="compile" depends="-init" description="Compile the sources.">
+        <javac 
+            srcdir="${java.dir}" 
+            destdir="${build.dir}" 
+            debug="${debug.flag}"
+            deprecation="${deprecation.flag}">
+        </javac>
+    </target>
+
+</project>
+
