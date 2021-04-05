@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ====================================================================== 
      00.00.2021                                                        
-
+     
      NAME
                    
-     Carlos F. Heuberger                                                                
+     Carlos Heuberger                                                                
      ====================================================================== -->
 <project name="NAME" default="dist" basedir=".">
-
+    
     <description>
         DESCRIPTION
     </description>
     
-	<property name="src.dir" location="src"/>
-	<property name="java.dir" location="${src.dir}/java"/>
-	<property name="res.dir" location="${src.dir}/resources"/>
-
-	<property name="build.dir" location="build"/>
-	<property name="dist.dir" location="dist"/>
-	
-	<property name="manifest.file" value="${src.dir}/manifest.txt"/>
-	<property name="jar.file" value="${dist.dir}/${ant.project.name}.jar"/>
-	
-	<property name="debug.flag" value="true"/>
-	<property name="deprecation.flag" value="true"/>
-
-
+    <property name="src.dir" location="src"/>
+    <property name="java.dir" location="${src.dir}/java"/>
+    <property name="res.dir" location="${src.dir}/resources"/>
+    
+    <property name="build.dir" location="build"/>
+    <property name="dist.dir" location="dist"/>
+        
+    <property name="manifest.file" value="${src.dir}/manifest.txt"/>
+    <property name="jar.file" value="${dist.dir}/${ant.project.name}.jar"/>
+        
+    <property name="debug.flag" value="true"/>
+    <property name="deprecation.flag" value="true"/>
+    
+    
     <target name="-init">
         <tstamp />
         <mkdir dir="${build.dir}" />
         <mkdir dir="${dist.dir}" />
     </target>
-
-
+    
+    
     <target name="clean" description="Remove generated files and directories.">
         <delete dir="${build.dir}" />
         <delete dir="${dist.dir}" />
     </target>
-
+    
     
     <target name="dist" depends="jar" description="Makes distribution.">
     </target>
@@ -58,17 +58,17 @@
             destdir="${build.dir}" 
             debug="${debug.flag}"
             deprecation="${deprecation.flag}"
-        	includeAntRuntime="false"
-        	>
+            includeAntRuntime="false"
+            >
         </javac>
-   	</target>
-
-	
-	<target name="resources" depends="-init" description="Copy resources.">
-    	<copy todir="${build.dir}">
-    		<fileset dir="${res.dir}" />
-    	</copy>
     </target>
-
+    
+    
+    <target name="resources" depends="-init" description="Copy resources.">
+        <copy todir="${build.dir}">
+            <fileset dir="${res.dir}" />
+        </copy>
+    </target>
+    
 </project>
 
