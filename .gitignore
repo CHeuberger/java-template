@@ -2,6 +2,7 @@
 *~
 *.swp
 *.bak
+*.orig
 
 # eclipse
 /.settings/
